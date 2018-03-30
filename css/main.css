@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c7e56c;
+  background: #a84ebd;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2661,7 +2661,7 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("/images/sky.jpg");
+  background-image: url("/images/sky.jpg");
   width: 100%;
   heigt: 50%;
   background-size: 100% 100%;
