@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff1aff;
+  background: #ff0b03;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2662,6 +2662,6 @@ embed {
 }
 body {
   background: url("/images/sky_top.jpeg");
-  background: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.9);
   background-attachment: fixed;
 }
