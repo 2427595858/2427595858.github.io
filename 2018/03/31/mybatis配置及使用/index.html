@@ -87,12 +87,16 @@
 <meta property="og:site_name" content="光玉">
 <meta property="og:description" content="mybatis配置1.首先，在网上下载mybatis的jar包以及所需要的数据库驱动我使用的是mybatis-3.4.6.jar和sqljdbc42.jar（也就是sqlserver的jdbc驱动）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/mybatis数据库建表.png">
-<meta property="og:updated_time" content="2018-04-01T05:04:39.611Z">
+<meta property="og:image" content="http://yoursite.com/img/mybatis数据库建表.png">
+<meta property="og:image" content="http://yoursite.com/img/sqlmap1.png">
+<meta property="og:image" content="http://yoursite.com/img/usermap1.png">
+<meta property="og:image" content="http://yoursite.com/img/sqlmap2.png">
+<meta property="og:image" content="http://yoursite.com/img/目录结构.png">
+<meta property="og:updated_time" content="2018-04-01T11:50:36.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mybatis配置及使用">
 <meta name="twitter:description" content="mybatis配置1.首先，在网上下载mybatis的jar包以及所需要的数据库驱动我使用的是mybatis-3.4.6.jar和sqljdbc42.jar（也就是sqlserver的jdbc驱动）">
-<meta name="twitter:image" content="http://yoursite.com/images/mybatis数据库建表.png">
+<meta name="twitter:image" content="http://yoursite.com/img/mybatis数据库建表.png">
 
 
 
@@ -315,7 +319,21 @@
 
       
         <h2 id="mybatis配置"><a href="#mybatis配置" class="headerlink" title="mybatis配置"></a>mybatis配置</h2><p>1.首先，在网上下载mybatis的jar包以及所需要的数据库驱动我使用的是mybatis-3.4.6.jar和sqljdbc42.jar（也就是sqlserver的jdbc驱动）<br><a id="more"></a><br>2.创建可供测试项目，java项目和web项目都可以，然后将相关的jar文件引入到项目中</p>
-<p>3.创建数据库mybatis，然后执行以下sql语句：<br><img src="/images/mybatis数据库建表.png" alt="mybatis数据库建表"></p>
+<p>3.创建数据库mybatis，然后执行以下sql语句：<br><img src="/img/mybatis数据库建表.png" alt="mybatis数据库建表"></p>
+<h2 id="使用mybatis查询数据库数据（通过id）"><a href="#使用mybatis查询数据库数据（通过id）" class="headerlink" title="使用mybatis查询数据库数据（通过id）"></a>使用mybatis查询数据库数据（通过id）</h2><ul>
+<li><p>添加mybatis配置文件SqlMapConfig.xml<br><img src="/img/sqlmap1.png" alt="sqlmap"></p>
+</li>
+<li><p>编写Users类</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package domain;</span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class Users &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 定义表所需要的实体类</span><br><span class="line">     */</span><br><span class="line">    private int id;</span><br><span class="line">    private String username;</span><br><span class="line">    private Date birthday;</span><br><span class="line">    private String sex;</span><br><span class="line">    private String address;</span><br><span class="line"></span><br><span class="line">    public int getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(int id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getUsername() &#123;</span><br><span class="line">        return username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUsername(String username) &#123;</span><br><span class="line">        this.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Date getBirthday() &#123;</span><br><span class="line">        return birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setBirthday(Date birthday) &#123;</span><br><span class="line">        this.birthday = birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getSex() &#123;</span><br><span class="line">        return sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSex(String sex) &#123;</span><br><span class="line">        this.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getAddress() &#123;</span><br><span class="line">        return address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAddress(String address) &#123;</span><br><span class="line">        this.address = address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString()&#123;</span><br><span class="line">        return &quot;domain.Users&#123;&quot;</span><br><span class="line">                +&quot;id=&quot;+id</span><br><span class="line">                +&quot;，username=&quot;+username</span><br><span class="line">                +&quot;，birthday=&quot;+birthday</span><br><span class="line">                +&quot;，sex=&quot;+sex</span><br><span class="line">                +&quot;，address=&quot;+address</span><br><span class="line">                +&quot;&#125;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>定义users表的sql映射文件UserMapper.xml<br><img src="/img/usermap1.png" alt=""></li>
+</ul>
+<p>同时，在SqlMapConfig.xml中添加如下语句：<br><img src="/img/sqlmap2.png" alt=""></p>
+<ul>
+<li>项目目录结构：<br><img src="/img/目录结构.png" alt=""></li>
+</ul>
 
       
     </div>
@@ -491,7 +509,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis配置"><span class="nav-number">1.</span> <span class="nav-text">mybatis配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis配置"><span class="nav-number">1.</span> <span class="nav-text">mybatis配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用mybatis查询数据库数据（通过id）"><span class="nav-number">2.</span> <span class="nav-text">使用mybatis查询数据库数据（通过id）</span></a></li></ol></div>
             
 
           </div>
