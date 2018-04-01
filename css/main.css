@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b4ff59;
+  background: #67289d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2663,7 +2663,6 @@ embed {
 body {
   background-image: url("/images/night_top.png");
   background-attachment: fixed;
-  background-repeat: no-repeat;
 }
 .post {
   margin-top: 60px;
