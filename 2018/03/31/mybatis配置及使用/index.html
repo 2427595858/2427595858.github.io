@@ -79,33 +79,40 @@
 
 
 
-<meta name="description" content="mybatis配置1.首先，在网上下载mybatis的jar包以及所需要的数据库驱动我使用的是mybatis-3.4.6.jar和sqljdbc42.jar（也就是sqlserver的jdbc驱动）">
+<meta name="description" content="mybatis配置 首先，在网上下载mybatis的jar包以及所需要的数据库驱动我使用的是mybatis-3.4.6.jar和sqljdbc42.jar（也就是sqlserver的jdbc驱动）">
 <meta name="keywords" content="mybatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mybatis配置及使用">
 <meta property="og:url" content="http://yoursite.com/2018/03/31/mybatis配置及使用/index.html">
 <meta property="og:site_name" content="光玉">
-<meta property="og:description" content="mybatis配置1.首先，在网上下载mybatis的jar包以及所需要的数据库驱动我使用的是mybatis-3.4.6.jar和sqljdbc42.jar（也就是sqlserver的jdbc驱动）">
+<meta property="og:description" content="mybatis配置 首先，在网上下载mybatis的jar包以及所需要的数据库驱动我使用的是mybatis-3.4.6.jar和sqljdbc42.jar（也就是sqlserver的jdbc驱动）">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/mybatis数据库建表.png">
 <meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/sqlmap1.png">
 <meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/usermap1.png">
 <meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/sqlmap2.png">
 <meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/目录结构.png">
-<meta property="og:image" content="http://yoursite.com/img/mybatic%20picture/import.png">
-<meta property="og:image" content="http://yoursite.com/img/mybatic%20picture/findbyid.png">
-<meta property="og:image" content="http://yoursite.com/img/mybatic%20picture/result1.png">
-<meta property="og:image" content="http://yoursite.com/img/mybatic%20picture/usermap2.png">
-<meta property="og:image" content="http://yoursite.com/img/mybatic%20picture/findbyname.png">
-<meta property="og:image" content="http://yoursite.com/img/mybatic%20picture/result2.png">
-<meta property="og:image" content="http://yoursite.com/img/mybatic%20picture/usermap3.png">
-<meta property="og:image" content="http://yoursite.com/img/mybatic%20picture/usermap4.png">
-<meta property="og:image" content="http://yoursite.com/img/mybatic%20picture/insert1.png">
-<meta property="og:image" content="http://yoursite.com/img/mybatic%20picture/insert2.png">
-<meta property="og:updated_time" content="2018-04-01T12:16:10.198Z">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/import.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/创建工厂.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/findbyid.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/result1.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/usermap2.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/findbyname.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/result2.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/usermap3.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/usermap4.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/insert1.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/insert2.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/usermap5.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/delete2.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/delete.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/usermap6.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/update.png">
+<meta property="og:image" content="http://yoursite.com/img/mybatis%20picture/update2.png">
+<meta property="og:updated_time" content="2018-04-01T12:44:12.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mybatis配置及使用">
-<meta name="twitter:description" content="mybatis配置1.首先，在网上下载mybatis的jar包以及所需要的数据库驱动我使用的是mybatis-3.4.6.jar和sqljdbc42.jar（也就是sqlserver的jdbc驱动）">
+<meta name="twitter:description" content="mybatis配置 首先，在网上下载mybatis的jar包以及所需要的数据库驱动我使用的是mybatis-3.4.6.jar和sqljdbc42.jar（也就是sqlserver的jdbc驱动）">
 <meta name="twitter:image" content="http://yoursite.com/img/mybatis%20picture/mybatis数据库建表.png">
 
 
@@ -328,9 +335,14 @@
       
 
       
-        <h2 id="mybatis配置"><a href="#mybatis配置" class="headerlink" title="mybatis配置"></a>mybatis配置</h2><p>1.首先，在网上下载mybatis的jar包以及所需要的数据库驱动我使用的是mybatis-3.4.6.jar和sqljdbc42.jar（也就是sqlserver的jdbc驱动）<br><a id="more"></a><br>2.创建可供测试项目，java项目和web项目都可以，然后将相关的jar文件引入到项目中</p>
-<p>3.创建数据库mybatis，然后执行以下sql语句：<br><img src="/img/mybatis picture/mybatis数据库建表.png" alt="mybatis数据库建表"></p>
-<h2 id="使用mybatis查询数据库数据（通过id）"><a href="#使用mybatis查询数据库数据（通过id）" class="headerlink" title="使用mybatis查询数据库数据（通过id）"></a>使用mybatis查询数据库数据（通过id）</h2><ol>
+        <h2 id="mybatis配置"><a href="#mybatis配置" class="headerlink" title="mybatis配置"></a>mybatis配置</h2><ol>
+<li>首先，在网上下载mybatis的jar包以及所需要的数据库驱动我使用的是mybatis-3.4.6.jar和sqljdbc42.jar（也就是sqlserver的jdbc驱动）<a id="more"></a></li>
+<li><p>创建可供测试项目，java项目和web项目都可以，然后将相关的jar文件引入到项目中</p>
+</li>
+<li><p>创建数据库mybatis，然后执行以下sql语句：<br><img src="/img/mybatis picture/mybatis数据库建表.png" alt="mybatis数据库建表"></p>
+</li>
+</ol>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h4 id="使用mybatis查询数据库数据（通过id）"><a href="#使用mybatis查询数据库数据（通过id）" class="headerlink" title="使用mybatis查询数据库数据（通过id）"></a>使用mybatis查询数据库数据（通过id）</h4><ol>
 <li><p>添加mybatis配置文件SqlMapConfig.xml<br><img src="/img/mybatis picture/sqlmap1.png" alt="sqlmap"></p>
 </li>
 <li><p>编写Users类</p>
@@ -338,31 +350,56 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package domain;</span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class Users &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 定义表所需要的实体类</span><br><span class="line">     */</span><br><span class="line">    private int id;</span><br><span class="line">    private String username;</span><br><span class="line">    private Date birthday;</span><br><span class="line">    private String sex;</span><br><span class="line">    private String address;</span><br><span class="line"></span><br><span class="line">    public int getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(int id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getUsername() &#123;</span><br><span class="line">        return username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUsername(String username) &#123;</span><br><span class="line">        this.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Date getBirthday() &#123;</span><br><span class="line">        return birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setBirthday(Date birthday) &#123;</span><br><span class="line">        this.birthday = birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getSex() &#123;</span><br><span class="line">        return sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSex(String sex) &#123;</span><br><span class="line">        this.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getAddress() &#123;</span><br><span class="line">        return address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAddress(String address) &#123;</span><br><span class="line">        this.address = address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString()&#123;</span><br><span class="line">        return &quot;domain.Users&#123;&quot;</span><br><span class="line">                +&quot;id=&quot;+id</span><br><span class="line">                +&quot;，username=&quot;+username</span><br><span class="line">                +&quot;，birthday=&quot;+birthday</span><br><span class="line">                +&quot;，sex=&quot;+sex</span><br><span class="line">                +&quot;，address=&quot;+address</span><br><span class="line">                +&quot;&#125;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol start="3">
-<li>定义users表的sql映射文件UserMapper.xml<br><img src="/img/mybatis picture/usermap1.png" alt=""></li>
+<li>定义users表的sql映射文件UserMapper.xml<br><img src="/img/mybatis picture/usermap1.png" alt="usermap1"></li>
 </ol>
-<p>同时，在SqlMapConfig.xml中添加如下语句：<br><img src="/img/mybatis picture/sqlmap2.png" alt=""></p>
+<p>同时，在SqlMapConfig.xml中添加如下语句：<br><img src="/img/mybatis picture/sqlmap2.png" alt="sqlmap2"></p>
 <ol start="4">
 <li><p>项目目录结构：<br><img src="/img/mybatis picture/目录结构.png" alt=""></p>
 </li>
-<li><p>编写根据id查询数据的测试方法<br><img src="/img/mybatic picture/import.png" alt=""><br><img src="/img/mybatic picture/findbyid.png" alt=""></p>
+<li><p>编写根据id查询数据的测试方法<br><img src="/img/mybatis picture/import.png" alt=""><br><img src="/img/mybatis picture/创建工厂.png" alt=""><br><img src="/img/mybatis picture/findbyid.png" alt=""></p>
 </li>
 </ol>
-<p>得出测试结果（这里使用了junit4测试工具，请自行百度相关教程）<br><img src="/img/mybatic picture/result1.png" alt=""></p>
-<h2 id="根据名字进行模糊搜索"><a href="#根据名字进行模糊搜索" class="headerlink" title="根据名字进行模糊搜索"></a>根据名字进行模糊搜索</h2><ol>
-<li><p>在UserMapper.xml中添加如下语句：<br><img src="/img/mybatic picture/usermap2.png" alt=""></p>
+<p>得出测试结果（这里使用了junit4测试工具，请自行百度相关教程）<br><img src="/img/mybatis picture/result1.png" alt=""></p>
+<h4 id="根据名字进行模糊搜索"><a href="#根据名字进行模糊搜索" class="headerlink" title="根据名字进行模糊搜索"></a>根据名字进行模糊搜索</h4><ol>
+<li><p>在UserMapper.xml中添加如下语句：<br><img src="/img/mybatis picture/usermap2.png" alt=""></p>
 </li>
-<li><p>编写测试类<br><img src="/img/mybatic picture/findbyname.png" alt=""></p>
+<li><p>编写测试类<br><img src="/img/mybatis picture/findbyname.png" alt=""></p>
 </li>
-<li><p>查看结果<br><img src="/img/mybatic picture/result2.png" alt=""></p>
+<li><p>查看结果<br><img src="/img/mybatis picture/result2.png" alt=""></p>
 </li>
 </ol>
-<h2 id="向数据库中插入一条数据"><a href="#向数据库中插入一条数据" class="headerlink" title="向数据库中插入一条数据"></a>向数据库中插入一条数据</h2><ol>
-<li>在UserMapper.xml中添加如下语句：<br><img src="/img/mybatic picture/usermap3.png" alt=""></li>
+<h4 id="向数据库中插入一条数据"><a href="#向数据库中插入一条数据" class="headerlink" title="向数据库中插入一条数据"></a>向数据库中插入一条数据</h4><ol>
+<li>在UserMapper.xml中添加如下语句：<br><img src="/img/mybatis picture/usermap3.png" alt=""></li>
 </ol>
-<p>如果使用的是uuid函数生成id，则使用如下方法插入数据<br><img src="/img/mybatic picture/usermap4.png" alt=""></p>
+<p>如果使用的是uuid函数生成id，则使用如下方法插入数据<br><img src="/img/mybatis picture/usermap4.png" alt=""></p>
 <ol start="2">
-<li>编写测试类<br><img src="/img/mybatic picture/insert1.png" alt=""><br><img src="/img/mybatic picture/insert2.png" alt=""></li>
+<li>编写测试类<br><img src="/img/mybatis picture/insert1.png" alt=""><br><img src="/img/mybatis picture/insert2.png" alt=""></li>
 </ol>
+<h4 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h4><ol>
+<li><p>在UserMapper.xml中添加如下语句：<br><img src="/img/mybatis picture/usermap5.png" alt=""></p>
+</li>
+<li><p>编写测试类<br><img src="/img/mybatis picture/delete2.png" alt=""></p>
+</li>
+<li><p>查看结果<br><img src="/img/mybatis picture/delete.png" alt=""></p>
+</li>
+</ol>
+<h4 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h4><ol>
+<li><p>在UserMapper.xml中添加如下语句：<br><img src="/img/mybatis picture/usermap6.png" alt=""></p>
+</li>
+<li><p>编写测试类<br><img src="/img/mybatis picture/update.png" alt=""></p>
+</li>
+<li><p>查看结果<br><img src="/img/mybatis picture/update2.png" alt=""></p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总的来说，开发流程可以概括为以下几个方面</p>
+<ul>
+<li>编写SqlMapConfig.xml</li>
+<li>编写mapper.xml</li>
+<li>通过配置文件创建SqlSessionFactory</li>
+<li>通过SqlSessionFactory获取SqlSession对象（使用opensession方法）</li>
+<li>通过SqlSession操作数据库(执行添加、更新、删除等事务需要调用SqlSession.commit()提交事务)</li>
+<li>关闭SqlSession</li>
+</ul>
 
       
     </div>
@@ -538,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis配置"><span class="nav-number">1.</span> <span class="nav-text">mybatis配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用mybatis查询数据库数据（通过id）"><span class="nav-number">2.</span> <span class="nav-text">使用mybatis查询数据库数据（通过id）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据名字进行模糊搜索"><span class="nav-number">3.</span> <span class="nav-text">根据名字进行模糊搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向数据库中插入一条数据"><span class="nav-number">4.</span> <span class="nav-text">向数据库中插入一条数据</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis配置"><span class="nav-number">1.</span> <span class="nav-text">mybatis配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法"><span class="nav-number">2.</span> <span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用mybatis查询数据库数据（通过id）"><span class="nav-number">2.0.1.</span> <span class="nav-text">使用mybatis查询数据库数据（通过id）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据名字进行模糊搜索"><span class="nav-number">2.0.2.</span> <span class="nav-text">根据名字进行模糊搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向数据库中插入一条数据"><span class="nav-number">2.0.3.</span> <span class="nav-text">向数据库中插入一条数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除数据"><span class="nav-number">2.0.4.</span> <span class="nav-text">删除数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新数据"><span class="nav-number">2.0.5.</span> <span class="nav-text">更新数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
