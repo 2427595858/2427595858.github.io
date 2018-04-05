@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/img/spring%20test/jar包.png">
 <meta property="og:image" content="http://yoursite.com/img/spring%20test/整体结构.png">
 <meta property="og:image" content="http://yoursite.com/img/spring%20test/list.png">
-<meta property="og:updated_time" content="2018-04-05T12:13:06.279Z">
+<meta property="og:updated_time" content="2018-04-05T12:17:18.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC配置及使用">
 <meta name="twitter:description" content="前言SpringMVC框架中主要主要有三大组件：处理器映射器，处理器适配器以及视图解析器而映射器和适配器可以由非注解和注解两种方式进行配置因为现在一般提倡注解方式配置，这里主要演示注解方式，非注解方式也会涉及一下">
@@ -349,7 +349,7 @@
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>配置视图解析器时，可以指定jsp路径的前缀和后缀<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!--配置视图解析器</span><br><span class="line">解析jsp页面，默认使用jstl标签，所以要求将jstl的包加到classpath--&gt;</span><br><span class="line">&lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</span><br><span class="line">    &lt;!-- 配置jsp前缀 --&gt;</span><br><span class="line">    &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt;</span><br><span class="line">    &lt;!-- 配置jsp后缀 --&gt;</span><br><span class="line">    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
 <p>相应的控制类中（这里是改itemController1类中的modelAndView.setViewName语句）<br><code>modelAndView.setViewName(&quot;/WEB-INF/jsp/itemList.jsp&quot;);  //指定用户访问的jsp页面地址</code><br>改成<br><code>modelAndView.setViewName(&quot;itemList&quot;);  //指定用户访问的jsp页面地址，前缀和后缀已在前端控制器中配好</code></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>前端控制器url-pattern有两种配置方式，即<em>\</em>.do<em>或</em>*.action* 以及 /</li>
+<li>前端控制器url-pattern有两种配置方式，即 *.do或 *.action 以及 /</li>
 <li>使用注解映射器时，要用@Controller标识控制类，用@RequestMapping定义url</li>
 <li>注解适配器要和注解映射器成对使用，不能一个是非注解的，一个是注解的</li>
 <li>视图解析器默认不配置参数，那么就要在modelAndView.setViewName中写出完整的jsp路径；<br>也可以配置路径的前缀和后缀这两个参数，在modelAndView.setViewName中就不需要再写前缀和后缀了</li>
