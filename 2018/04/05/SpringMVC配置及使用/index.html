@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/book.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/book.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spring," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言SpringMVC框架中主要主要有三大组件：处理器映射器，处理器适配器以及视图解析器而映射器和适配器可以由非注解和注解两种方式进行配置">
+<meta name="keywords" content="Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC配置及使用">
+<meta property="og:url" content="http://yoursite.com/2018/04/05/SpringMVC配置及使用/index.html">
+<meta property="og:site_name" content="光玉">
+<meta property="og:description" content="前言SpringMVC框架中主要主要有三大组件：处理器映射器，处理器适配器以及视图解析器而映射器和适配器可以由非注解和注解两种方式进行配置">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/spring%20test/jar包.png">
+<meta property="og:image" content="http://yoursite.com/img/spring%20test/整体结构.png">
+<meta property="og:updated_time" content="2018-04-05T07:48:54.101Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringMVC配置及使用">
+<meta name="twitter:description" content="前言SpringMVC框架中主要主要有三大组件：处理器映射器，处理器适配器以及视图解析器而映射器和适配器可以由非注解和注解两种方式进行配置">
+<meta name="twitter:image" content="http://yoursite.com/img/spring%20test/jar包.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/05/SpringMVC配置及使用/"/>
+
+
+
+
+
+  <title>SpringMVC配置及使用 | 光玉</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/2427595858"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">光玉</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">你有诗，我有酒</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/05/SpringMVC配置及使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="光玉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/pkqIcon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光玉">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringMVC配置及使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-05T00:00:00+08:00">
+                2018-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>SpringMVC框架中主要主要有三大组件：处理器映射器，处理器适配器以及视图解析器<br>而映射器和适配器可以由非注解和注解两种方式进行配置<br><a id="more"></a><br>因为现在一般提倡注解方式配置，这里主要演示注解方式，非注解方式也会涉及一下</p>
+<h2 id="SpringMVC配置"><a href="#SpringMVC配置" class="headerlink" title="SpringMVC配置"></a>SpringMVC配置</h2><p>首先，需要在网上下载<a href="http://maven.springframework.org/release/org/springframework/spring/" target="_blank" rel="noopener">spring jar包</a></p>
+<h3 id="1-需要导入的jar包"><a href="#1-需要导入的jar包" class="headerlink" title="1.需要导入的jar包"></a>1.需要导入的jar包</h3><p><img src="/img/spring test/jar包.png" alt="jar包"></p>
+<p>这里我偷懒了一下，可以只挑选出项目需要的几个jar包导入<br>项目的总体结构如下：<br><img src="/img/spring test/整体结构.png" alt="整体结构"></p>
+<p>下面我们通过一个显示商品列表的小程序来进行相关的配置</p>
+<h3 id="2-前端控制器配置"><a href="#2-前端控制器配置" class="headerlink" title="2.前端控制器配置"></a>2.前端控制器配置</h3><p>编写WEB-INF目录下的web.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;web-app xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;</span><br><span class="line">         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">         xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd&quot;</span><br><span class="line">         version=&quot;3.1&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 前端控制器配置 --&gt;</span><br><span class="line">    &lt;!--</span><br><span class="line">        DispatcherServlet主要用作职责调度工作，本身主要用于控制流程，主要职责如下：</span><br><span class="line">        1、文件上传解析，如果请求类型是multipart将通过MultipartResolver进行文件上传解析；</span><br><span class="line">        2、通过HandlerMapping，将请求映射到处理器（返回一个HandlerExecutionChain，它包括一个处理器、多个HandlerInterceptor拦截器）；</span><br><span class="line">        3、通过HandlerAdapter支持多种类型的处理器(HandlerExecutionChain中的处理器)；</span><br><span class="line">        4、通过ViewResolver解析逻辑视图名到具体视图实现；</span><br><span class="line">        5、本地化解析；</span><br><span class="line">        6、渲染具体的视图等；</span><br><span class="line">        7、如果执行过程中遇到异常将交给HandlerExceptionResolver来解析。</span><br><span class="line">        --&gt;</span><br><span class="line">    &lt;servlet&gt;</span><br><span class="line">        &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;</span><br><span class="line">        &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;</span><br><span class="line">        &lt;!-- 加载springmvc配置文件 --&gt;</span><br><span class="line">        &lt;init-param&gt;</span><br><span class="line">            &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</span><br><span class="line">            &lt;!-- 配置文件的地址，如果不配置contextConfigLocation，</span><br><span class="line">                 默认查找的配置文件名称是classpath下的:servlet名称+&quot;-servlet.xml&quot;即springmvc-servlet.xml--&gt;</span><br><span class="line">            &lt;param-value&gt;springmvc.xml&lt;/param-value&gt;</span><br><span class="line">        &lt;/init-param&gt;</span><br><span class="line">    &lt;/servlet&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 映射 --&gt;</span><br><span class="line">    &lt;servlet-mapping&gt;</span><br><span class="line">        &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;</span><br><span class="line">        &lt;!-- 可以配置/  表示此工程所有请求全部由springmvc解析，此方式可以实现RESTful（表征性状态转移，总结起来应该是是一种简洁的架构风格）方式，</span><br><span class="line">                        静态文件不能由springmvc解析，需要特殊处理</span><br><span class="line">            可以配置*.do或者*.action，所有请求的url扩展名为.do或.action由springmvc解析，此方法常用</span><br><span class="line">            不可以配置/* ，如果配置/* ，则返回的jsp也有springmvc解析，这是不对的 --&gt;</span><br><span class="line">        &lt;!-- 根据个人习惯配置配置.do或者.action后缀，这里配置的是.action --&gt;</span><br><span class="line">        &lt;url-pattern&gt;*.action&lt;/url-pattern&gt;</span><br><span class="line">    &lt;/servlet-mapping&gt;</span><br><span class="line"></span><br><span class="line">&lt;/web-app&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-注解配置处理器映射器"><a href="#3-注解配置处理器映射器" class="headerlink" title="3.注解配置处理器映射器"></a>3.注解配置处理器映射器</h3><p>之前在前端控制器中指定了配置文件是web目录下的springmvc.xml文件，这里需要来配置springmvc.xml<br>首先，引入相关的xml主题规范<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;</span><br><span class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">       xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">		http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">		http://www.springframework.org/schema/mvc</span><br><span class="line">		http://www.springframework.org/schema/mvc/spring-mvc.xsd</span><br><span class="line">		http://www.springframework.org/schema/context</span><br><span class="line">		http://www.springframework.org/schema/context/spring-context.xsd</span><br><span class="line">		http://www.springframework.org/schema/aop</span><br><span class="line">		http://www.springframework.org/schema/aop/spring-aop.xsd</span><br><span class="line">		http://www.springframework.org/schema/tx</span><br><span class="line">		http://www.springframework.org/schema/tx/spring-tx.xsd &quot;&gt;</span><br><span class="line">		</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这里没有指定xsd版本号，默认使用引入的spring jar包的最新版本<br>接下来，通过注解方式配置处理器映射器<br>在springmvc.xml中添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 注解方式配置处理器映射器 --&gt;</span><br><span class="line">&lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>RequestMappingHandlerMapping映射器需要在Handler中使用@org.springframework.stereotype.Controller来标识这个类是一个控制器，<br>并且需要使用@RequestMapping来指定url，使用方式会在编写后端控制器时给出</p>
+<h3 id="注解配置处理器适配器"><a href="#注解配置处理器适配器" class="headerlink" title="注解配置处理器适配器"></a>注解配置处理器适配器</h3><p>在springmvc.xml中添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!-- 注解方式配置处理器适配器 --&gt;</span><br><span class="line">&lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>RequestMappingHandlerAdapter适配器不要求Handler实现任何接口，需要和RequestMappingHandlerMapping配对使用</p>
+<h3 id="注解方式编写后端控制器"><a href="#注解方式编写后端控制器" class="headerlink" title="注解方式编写后端控制器"></a>注解方式编写后端控制器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">package controller;</span><br><span class="line"></span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.servlet.ModelAndView;</span><br><span class="line">import po.Items;</span><br><span class="line"></span><br><span class="line">import java.math.BigDecimal;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.Date;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">//标识itemController1 为控制器</span><br><span class="line">@org.springframework.stereotype.Controller</span><br><span class="line">public class itemController1 &#123;</span><br><span class="line">    //指定url，即结合web.xml中配置的*.action组成url（这里是/queryItems.action）</span><br><span class="line">    @RequestMapping(&quot;/queryItems&quot;)</span><br><span class="line">    public ModelAndView queryItems()&#123;</span><br><span class="line">        //使用静态数据将商品信息显示在jsp页面上</span><br><span class="line">        List&lt;Items&gt; itemsList=new ArrayList();</span><br><span class="line">        Items item1=new Items();</span><br><span class="line">        item1.setName(&quot;皮鞋&quot;);</span><br><span class="line">        item1.setPrice(new BigDecimal(500));</span><br><span class="line">        item1.setDetail(&quot;江南皮革厂倒闭啦！！！&quot;);</span><br><span class="line">        item1.setCreatetime(new Date());</span><br><span class="line"></span><br><span class="line">        Items item2=new Items();</span><br><span class="line">        item2.setName(&quot;台式笔记本&quot;);</span><br><span class="line">        item2.setPrice(new BigDecimal(4399));</span><br><span class="line">        item2.setDetail(&quot;吃鸡标配，i5配置&quot;);</span><br><span class="line"></span><br><span class="line">        itemsList.add(item1);</span><br><span class="line">        itemsList.add(item2);</span><br><span class="line"></span><br><span class="line">        ModelAndView modelAndView=new ModelAndView();   //创建视图对象</span><br><span class="line">        modelAndView.addObject(&quot;itemsList&quot;,itemsList);</span><br><span class="line">        modelAndView.setViewName(&quot;/WEB-INF/jsp/itemList.jsp&quot;);  //指定用户访问的jsp页面地址</span><br><span class="line">        return modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里使用了po包的Items包装类，可以通过之前所学的mybatis逆向工程生成，这里给出相应代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">package po;</span><br><span class="line"></span><br><span class="line">import java.math.BigDecimal;</span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class Items &#123;</span><br><span class="line">    private Integer id; //商品id</span><br><span class="line"></span><br><span class="line">    private String name;    //商品名称</span><br><span class="line"></span><br><span class="line">    private BigDecimal price;   //商品价格</span><br><span class="line"></span><br><span class="line">    private String detail;  //商品详情</span><br><span class="line"></span><br><span class="line">    private String pic;     //商品图片</span><br><span class="line"></span><br><span class="line">    private Date createtime;    //生产日期</span><br><span class="line"></span><br><span class="line">    public Integer getId() &#123; return id; &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(Integer id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name == null ? null : name.trim();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public BigDecimal getPrice() &#123;</span><br><span class="line">        return price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setPrice(BigDecimal price) &#123;</span><br><span class="line">        this.price = price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getDetail() &#123;</span><br><span class="line">        return detail;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setDetail(String detail) &#123;</span><br><span class="line">        this.detail = detail == null ? null : detail.trim();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getPic() &#123;</span><br><span class="line">        return pic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setPic(String pic) &#123;</span><br><span class="line">        this.pic = pic == null ? null : pic.trim();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Date getCreatetime() &#123;</span><br><span class="line">        return createtime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCreatetime(Date createtime) &#123;</span><br><span class="line">        this.createtime = createtime;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>itemController1控制器还指定“/WEB-INF/jsp/itemList.jsp”，这里给出itemList.jsp的相关代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%--</span><br><span class="line">  Created by IntelliJ IDEA.</span><br><span class="line">  User: 光玉</span><br><span class="line">  Date: 2018/4/3</span><br><span class="line">  Time: 18:35</span><br><span class="line">  To change this template use File | Settings | File Templates.</span><br><span class="line">--%&gt;</span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; pageEncoding=&quot;UTF-8&quot; %&gt;</span><br><span class="line">&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;</span><br><span class="line">&lt;%@ taglib prefix=&quot;fmt&quot; uri=&quot;http://java.sun.com/jsp/jstl/fmt&quot; %&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;查询商品列表&lt;/title&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;&lt;%= request.getContextPath()%&gt;/plugin/layui/layui.all.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%= request.getContextPath()%&gt;/plugin/layui/css/layui.css&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;form class=&quot;layui-form&quot; action=&quot;$&#123;pageContext.request.contextPath&#125;/queryItems.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;layui-input-block&quot;&gt;</span><br><span class="line">            &lt;label class=&quot;layui-form-label&quot;&gt;查询条件&lt;/label&gt;</span><br><span class="line">            &lt;button class=&quot;layui-btn&quot; type=&quot;submit&quot; value=&quot;查询&quot;&gt;查询&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;table class=&quot;layui-table&quot; lay-size=&quot;sm&quot;&gt;</span><br><span class="line">            &lt;colgroup&gt;</span><br><span class="line">                &lt;col width=&quot;150&quot;&gt;</span><br><span class="line">                &lt;col width=&quot;150&quot;&gt;</span><br><span class="line">                &lt;col width=&quot;150&quot;&gt;</span><br><span class="line">                &lt;col width=&quot;150&quot;&gt;</span><br><span class="line">                &lt;col width=&quot;150&quot;&gt;</span><br><span class="line">            &lt;/colgroup&gt;</span><br><span class="line">            &lt;thead&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                    &lt;th&gt;商品名称&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;商品价格&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;商品详情&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;生产日期&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;操作&lt;/th&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">            &lt;/thead&gt;</span><br><span class="line">            &lt;tbody&gt;</span><br><span class="line">                &lt;c:forEach items=&quot;$&#123;itemsList&#125;&quot; var=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;tr&gt;</span><br><span class="line">                        &lt;td&gt;$&#123;item.name&#125;&lt;/td&gt;</span><br><span class="line">                        &lt;td&gt;$&#123;item.price&#125;&lt;/td&gt;</span><br><span class="line">                        &lt;td&gt;$&#123;item.detail&#125;&lt;/td&gt;</span><br><span class="line">                        &lt;td&gt;&lt;fmt:formatDate value=&quot;$&#123;item.createtime&#125;&quot; pattern=&quot;yyyy-mm-dd hh:mm:ss&quot;/&gt; &lt;/td&gt;</span><br><span class="line"></span><br><span class="line">                        &lt;td&gt;&lt;a href=&quot;$&#123;pageContext.request.contextPath&#125;/items/editItems.action?id=$&#123;item.id&#125;&quot;&gt;修改&lt;/a&gt;&lt;/td&gt;</span><br><span class="line">                    &lt;/tr&gt;</span><br><span class="line">                &lt;/c:forEach&gt;</span><br><span class="line">            &lt;/tbody&gt;</span><br><span class="line">        &lt;/table&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        layui.use(&apos;form&apos;, function () &#123;</span><br><span class="line">            var form = layui.form;</span><br><span class="line">            form.render(&apos;radio&apos;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>注意，jsp文件中使用了layui前端插件，路径是web/plugin/layui，如有需要请到<a href="http://www.layui.com/" target="_blank" rel="noopener">layui官网</a>下载,<br>否则就不引入插件，使用原来的html标签编写</p>
+<p>然后我们需要在springmvc.xml中对该Handler进行配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- 配置单个注解的Handler</span><br><span class="line">     不需要声明id和name属性，只需要给出class=&quot;包名.类名&quot;即可  --&gt;</span><br><span class="line">&lt;bean class=&quot;controller.itemController1&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>上面的配置方式是配置单个Handler，若要对多个Handler进行配置，可以使用以下的方式</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" <i class="fa fa-tag"></i> Spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/03/Spring4-SpringMVC-mybatis整合/" rel="next" title="Spring4+SpringMVC+mybatis整合">
+                <i class="fa fa-chevron-left"></i> Spring4+SpringMVC+mybatis整合
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pkqIcon.jpg"
+                alt="光玉" />
+            
+              <p class="site-author-name" itemprop="name">光玉</p>
+              <p class="site-description motion-element" itemprop="description">你有诗，我有酒</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/2427595858" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC配置"><span class="nav-number">2.</span> <span class="nav-text">SpringMVC配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-需要导入的jar包"><span class="nav-number">2.1.</span> <span class="nav-text">1.需要导入的jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-前端控制器配置"><span class="nav-number">2.2.</span> <span class="nav-text">2.前端控制器配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-注解配置处理器映射器"><span class="nav-number">2.3.</span> <span class="nav-text">3.注解配置处理器映射器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解配置处理器适配器"><span class="nav-number">2.4.</span> <span class="nav-text">注解配置处理器适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解方式编写后端控制器"><span class="nav-number">2.5.</span> <span class="nav-text">注解方式编写后端控制器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">光玉</span>
+
+  
+</div>
+
+
+	<div class="powered-by">
+		<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+		  Visitors:<span id="busuanzi_value_site_uv"></span>
+		</span>
+	</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
