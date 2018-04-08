@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="光玉">
 <meta property="og:description" content="ssm知识点记录学习ssm框架中所遇到的一些知识点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-08T03:33:40.518Z">
+<meta property="og:updated_time" content="2018-04-08T10:35:25.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssm知识点">
 <meta name="twitter:description" content="ssm知识点记录学习ssm框架中所遇到的一些知识点">
@@ -319,11 +319,26 @@
 <li>限制http请求方法<br>除了定义url路径外，还可以限制http请求方法，格式如下：<br>@RequestMapping(value=”/editItems”,method = {RequestMethod.POST,RequestMethod.  GET}),这里指限制了访问方法只能为POST和GET</li>
 </ul>
 <h3 id="controller返回类型"><a href="#controller返回类型" class="headerlink" title="controller返回类型"></a>controller返回类型</h3><ul>
-<li><p>返回ModelAndView<br>在controller类的方法中创建视图对象并返回视图对象</p>
+<li><p>返回ModelAndView<br>在controller类的方法中创建视图对象并返回视图对象<br>下面的例子是参照<a href="https://2427595858.github.io/2018/04/07/ssm%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">ssm简单使用</a>中的ItemsController来写的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/queryItems&quot;)</span><br><span class="line">public ModelAndView queryItems() throws Exception&#123;</span><br><span class="line">    //调用service来显示商品列表</span><br><span class="line">    List&lt;ItemCustom&gt; itemsList=itemsService.findItemsList(null);</span><br><span class="line"></span><br><span class="line">    ModelAndView modelAndView=new ModelAndView();   //创建视图对象</span><br><span class="line">    modelAndView.addObject(&quot;itemsList&quot;,itemsList);</span><br><span class="line">    modelAndView.setViewName(&quot;itemsList&quot;);  //指定用户访问的jsp页面地址，前缀和后缀已在前端控制器中配好</span><br><span class="line">    return modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>返回string</p>
+<li><p>返回string<br>1.返回的是逻辑视图名，真正的视图路径=前缀+逻辑视图名+后缀（也就是jsp页面路径）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   @RequestMapping(&quot;/editItems&quot;)</span><br><span class="line">   public String editItems(Model model) throws Exception&#123;</span><br><span class="line">       //String返回的是逻辑视图名</span><br><span class="line">//直接指定返回id为1的商品信息</span><br><span class="line">       ItemCustom itemCustom=itemsService.findItemsById(1);</span><br><span class="line">       //使用形参中的Model来实现ModelAndView的效果</span><br><span class="line">       model.addAttribute(&quot;itemCustom&quot;,itemCustom);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       return &quot;editItems&quot;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<p>  2.redirect重定向<br>  在返回String的同时，可以进行页面的重定向操作，此时地址栏url会发生变化，并且修   改提交的request数据无法传到重定向的地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/editItemsSubmit&quot;)</span><br><span class="line">   public String editItemsSubmit() throws Exception&#123;</span><br><span class="line">       //重定向操作</span><br><span class="line">       //提交修改信息后重定向到查询列表页面</span><br><span class="line">       //格式为</span><br><span class="line">       // return &quot;redirect:path&quot;;</span><br><span class="line">       return &quot;redirect:queryItems.action&quot;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>  3.forward页面转发<br>  通过forward进行转发时，地址栏url不会发生变化，同时request数据可以传到转发的地   址处（将上面代码中的redirect改为forward就可以了）</p>
+<ul>
+<li><p>返回void<br>返回这种结果的时候可以在Controller方法的形参中定义HTTPServletRequest和HTTPServ  letResponse对象进行请求的接收和响应</p>
+<p>1.使用request转发页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void 方法名(HttpServletRequest request, HttpServletResponse response) throws Exception&#123;</span><br><span class="line">    request.getRequestDispatcher(&quot;转发路径&quot;).forward(request,response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.使用response进行重定向</p>
+<pre><code>response.sendRedirect(&quot;重定向路径&quot;);
+</code></pre><p>3.使用response响应结果（设置编码格式，json串之类的）</p>
+<pre><code>response.setCharacterEncoding(&quot;UTF-8&quot;);
+response.setContentType(&quot;application/json;charset=utf-8&quot;);
+response.getWriter.write(&quot;json串&quot;);
+</code></pre></li>
 </ul>
 
       
