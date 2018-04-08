@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="光玉">
 <meta property="og:description" content="ssm知识点记录学习ssm框架中所遇到的一些知识点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-08T10:35:25.320Z">
+<meta property="og:updated_time" content="2018-04-08T10:48:16.080Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssm知识点">
 <meta name="twitter:description" content="ssm知识点记录学习ssm框架中所遇到的一些知识点">
@@ -316,7 +316,7 @@
 <h3 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h3><ul>
 <li>url映射<br>设置controller方法对应的url，运行处理器映射时使用</li>
 <li>窄化请求映射<br>为了便于对url进行分类管理，可以对controller类上定义url，相当于访问路径的根目录</li>
-<li>限制http请求方法<br>除了定义url路径外，还可以限制http请求方法，格式如下：<br>@RequestMapping(value=”/editItems”,method = {RequestMethod.POST,RequestMethod.  GET}),这里指限制了访问方法只能为POST和GET</li>
+<li>限制http请求方法<br>除了定义url路径外，还可以限制http请求方法，格式如下：<br>@RequestMapping(value=”请求路径”,method = {请求方法1,请求方法2}),<br>比如说：RequestMethod.POST表示post请求方法<br>若只设置了post请求，则只能以post请求访问</li>
 </ul>
 <h3 id="controller返回类型"><a href="#controller返回类型" class="headerlink" title="controller返回类型"></a>controller返回类型</h3><ul>
 <li><p>返回ModelAndView<br>在controller类的方法中创建视图对象并返回视图对象<br>下面的例子是参照<a href="https://2427595858.github.io/2018/04/07/ssm%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">ssm简单使用</a>中的ItemsController来写的</p>
