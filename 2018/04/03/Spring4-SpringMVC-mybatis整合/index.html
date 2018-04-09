@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/img/springmvc整合/整体目录.png">
 <meta property="og:image" content="http://yoursite.com/img/springmvc整合/mapper和po.png">
 <meta property="og:image" content="http://yoursite.com/img/springmvc整合/itemList效果.png">
-<meta property="og:updated_time" content="2018-04-07T15:29:45.100Z">
+<meta property="og:updated_time" content="2018-04-08T15:29:27.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring4+SpringMVC+mybatis整合">
 <meta name="twitter:description" content="前言在整合之前，我们先来整理一下Spring，SpringMVC和mybatis之间的关系三者分别可以对应到Java开发的三层架构中（表现层，持久层和业务层）  SpringMVC作为表现层 mybatis作为持久层 spring负责对各层进行整合">
@@ -385,7 +385,7 @@
 <li>反转<br>通过IOC容器来创建对象，而不是直接在客户端创建对象，<br>客户端只需通过IOC容器直接获取对象</li>
 </ul>
 <p>在web.xml中添加spring容器的监听器，来加载spring容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置spring容器监听器 --&gt;</span><br><span class="line">&lt;context-param&gt;</span><br><span class="line">    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</span><br><span class="line">    &lt;!-- 建议使用通配符方式配置，而不是使用include一个一个文件加 --&gt;</span><br><span class="line">    &lt;param-value&gt;/WEB-INF/classes/config/spring/applicationContext-*.xml&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;</span><br><span class="line">&lt;listener&gt;</span><br><span class="line">    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;</span><br><span class="line">&lt;/listener&gt;</span><br></pre></td></tr></table></figure></p>
-<p>其实就是之前web.xml文件中注释掉的那一部分<br>另外，给出log4j.properties配置文件代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 用于输出日志</span><br><span class="line">log4j.rootLogger=DEBUG,stdout,R</span><br><span class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender</span><br><span class="line">log4j.appender.stdout.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n</span><br></pre></td></tr></table></figure></p>
+<p>其实就是之前web.xml文件中注释掉的那一部分<br>另外，给出log4j.properties配置文件代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 用于输出日志</span><br><span class="line">log4j.rootLogger=DEBUG,stdout</span><br><span class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender</span><br><span class="line">log4j.appender.stdout.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n</span><br></pre></td></tr></table></figure></p>
 <p><strong> 注意：如果控制台输出Please initialize the log4j system properly.的话， </strong><br>      <strong> 请将log4j.properties放在WEB-INF/classes下便可正常显示日志 </strong></p>
 <p>至此，全部整合工作完成<br>输入<code>http://localhost:8080/spring/queryItems.action</code>查看效果<br><img src="/img/springmvc整合/itemList效果.png" alt="itemList效果"></p>
 <p>在下一篇文章<a href="https://2427595858.github.io/2018/04/07/ssm%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">ssm简单使用</a>中为程序添加了一些功能，快点进来看看吧</p>
@@ -421,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/03/mybatis逆向工程/" rel="next" title="mybatis逆向工程">
-                <i class="fa fa-chevron-left"></i> mybatis逆向工程
+              <a href="/2018/03/31/mybatis配置及使用/" rel="next" title="mybatis配置及使用">
+                <i class="fa fa-chevron-left"></i> mybatis配置及使用
               </a>
             
           </div>
@@ -431,8 +431,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/05/SpringMVC配置及使用/" rel="prev" title="SpringMVC配置及使用">
-                SpringMVC配置及使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/03/mybatis逆向工程/" rel="prev" title="mybatis逆向工程">
+                mybatis逆向工程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
