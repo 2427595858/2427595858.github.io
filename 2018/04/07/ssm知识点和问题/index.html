@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/知识点/spring作用.png">
 <meta property="og:image" content="http://yoursite.com/img/知识点/参数绑定过程.png">
-<meta property="og:updated_time" content="2018-04-09T12:44:06.703Z">
+<meta property="og:updated_time" content="2018-04-09T13:36:31.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssm知识点和问题">
 <meta name="twitter:description" content="前言主要用来记录学习ssm框架中所遇到的一些知识点和遇到的问题（不定时更新）若对其中一些代码举例不太清楚的，可以参考ssm简单使用">
@@ -356,14 +356,20 @@ response.getWriter.write(&quot;json串&quot;);
 <h3 id="controller参数绑定"><a href="#controller参数绑定" class="headerlink" title="controller参数绑定"></a>controller参数绑定</h3><p>过程是从客户端请求key/value数据，通过参数绑定，将key/value数据绑定到controller方法的形参上。<br>springmvc中，通过方法形参来接收页面数据，而不是在controller中定义成员变量接收<br><img src="/img/知识点/参数绑定过程.png" alt="参数绑定"></p>
 <h3 id="controller参数绑定默认支持的类型"><a href="#controller参数绑定默认支持的类型" class="headerlink" title="controller参数绑定默认支持的类型"></a>controller参数绑定默认支持的类型</h3><p>在controller方法形参上定义下边几种类型的对象，则在参数绑定过程中可以直接绑定对应的参数</p>
 <ul>
-<li><p>HttpServletRequest<br>通过request对象获取请求信息</p>
-</li>
-<li><p>HttpServletResponse<br>通过response对象处理响应信息</p>
-</li>
-<li><p>HttpSession<br>通过session对象得到session中存放的数据</p>
-</li>
-<li><p>Model/ModelMap<br>Model：包含四个addAttribute 和一个merAttribute方法的接口，<br>ModelMap： 实现了Map接口，包含Map方法。视图层通过request找到ModelMap中的数据，<br>两个类型的用法都差不多，作用是将model中的数据存放到request域</p>
-</li>
+<li><p>HttpServletRequest</p>
+<pre><code>通过request对象获取请求信息
+</code></pre></li>
+<li><p>HttpServletResponse</p>
+<pre><code>通过response对象处理响应信息
+</code></pre></li>
+<li><p>HttpSession</p>
+<pre><code>通过session对象得到session中存放的数据
+</code></pre></li>
+<li><p>Model/ModelMap</p>
+<pre><code>Model：包含四个addAttribute 和一个merAttribute方法的接口，
+ModelMap： 实现了Map接口，包含Map方法。视图层通过request找到ModelMap中的数据，    
+两个类型的用法都差不多，作用是将model中的数据存放到request域
+</code></pre></li>
 <li><p>简单数据类型<br>即Integer，String等类型，可以通过@RequestParam的注解方式来绑定参数<br>若不使用，则需要保证controller形参和request传入参数名称一致<br>@RequestParam格式如下：</p>
 <pre><code>@RequestParam（value=&quot;指定参数&quot;,required=true/false,defaultValue=&quot;默认值&quot;）
 value中设置request传入的指定参数名
@@ -380,6 +386,20 @@ defaultValue设置参数默认值
 <h3 id="自定义参数绑定"><a href="#自定义参数绑定" class="headerlink" title="自定义参数绑定"></a>自定义参数绑定</h3><p>当request请求的数据类型格式与pojo中的格式不一致时，需要进行自定义参数绑定<br>比如：pojo中日期类型为java.util.Date类型，而request中传入的日期格式是yyyy-MM-dd HH:mm:ss<br>这样会出现格式错误。相当于将一个日期字符串转换为日期类型<br>转换方式如下：</p>
 <p>在springmvc.xml中配置日期转换器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 这里的conversion-service表示转换器，在下边使用bean配置转换器 --&gt;</span><br><span class="line">&lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot;&gt;&lt;/mvc:annotation-driven&gt;</span><br><span class="line">	</span><br><span class="line"> &lt;!-- 自定义参数绑定 --&gt;</span><br><span class="line">&lt;bean id=&quot;conversionService&quot; class=&quot;org.springframework.format.support.FormattingConversionServiceFactoryBean&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;converters&quot;&gt;</span><br><span class="line">        &lt;list&gt;</span><br><span class="line">            &lt;!-- 日期类型转换器 --&gt;</span><br><span class="line">            &lt;bean class=&quot;controller.converter.DateConverter&quot;/&gt;</span><br><span class="line">        &lt;/list&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
 <p>根据配置，我们要在controller/converter包下编写DateConverter日期转换器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package controller.converter;</span><br><span class="line"></span><br><span class="line">import org.springframework.core.convert.converter.Converter;</span><br><span class="line"></span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class DateConverter implements Converter&lt;String,Date&gt;&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Date convert(String source)&#123;</span><br><span class="line">        // 转换 &quot;yyyy-MM-dd HH:mm:ss&quot;为Date格式</span><br><span class="line">        try&#123;</span><br><span class="line">            //参数绑定成功则返回转换后的日期</span><br><span class="line">            return new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;).parse(source);</span><br><span class="line">        &#125;catch(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        //否则返回空</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="springmvc和status2的区别"><a href="#springmvc和status2的区别" class="headerlink" title="springmvc和status2的区别"></a>springmvc和status2的区别</h3><ul>
+<li>springmvc是基于方法开发的，Struts2是基于类开发的<pre><code>1.springmvc通过方法的形参来接收数据，方法执行结束后会销毁数据
+2.Struts2通过类的成员变量来接收参数
+ （多线程访问时，由于成员变量共享，无法使用单例模式）
+</code></pre></li>
+<li><p>springmvc的controller默认是单例模式，而Struts2是多例模式开发</p>
+<pre><code>单例模式：成员变量是共享的，即在一个请求中修改了这个成员变量，
+          其他请求也能读到修改的成员变量的内容（所有请求都用一个对象处理）
+多例模式：每个请求都用一个新的对象处理
+
+springmvc中，在@Controller之前增加@Scope(“prototype”)，就可以改变单例模式为多例模式
+</code></pre><p>总的来说，springmvc推荐使用单例模式，两者没有多大的优劣之分</p>
+</li>
+</ul>
 <h2 id="使用ssm时所遇到的一些问题"><a href="#使用ssm时所遇到的一些问题" class="headerlink" title="使用ssm时所遇到的一些问题"></a>使用ssm时所遇到的一些问题</h2><h3 id="post乱码问题"><a href="#post乱码问题" class="headerlink" title="post乱码问题"></a>post乱码问题</h3><p>表单通过post方式提交，可能会出现乱码问题<br>解决方法是在web.xml文件中配置一个post乱码过滤器，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 表单通过post方式提交，可能会出现乱码问题，需要设置过滤器解决 --&gt;</span><br><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;</span><br><span class="line">    &lt;!-- 设置过滤器中的属性，将编码格式统一为utf-8 --&gt;</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;encoding&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;utf-8&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line">&lt;!-- 这里的/* 表示过滤所有请求 --&gt;</span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">    &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure></p>
 <h3 id="出现400请求错误的原因"><a href="#出现400请求错误的原因" class="headerlink" title="出现400请求错误的原因"></a>出现400请求错误的原因</h3><ul>
 <li><p>表单提交的数据类型是String类型的，而对应的pojo类中存在不能自动转换的<br>数据类型（如：Date类型）。解决方法参考上面ssm知识点所写的<a href="#自定义参数绑定">自定义参数绑定</a></p>
@@ -566,7 +586,7 @@ defaultValue设置参数默认值
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ssm知识点"><span class="nav-number">2.</span> <span class="nav-text">ssm知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ssm框架对应的Java开发三层架构"><span class="nav-number">2.1.</span> <span class="nav-text">ssm框架对应的Java开发三层架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RequestMapping注解方式作用"><span class="nav-number">2.2.</span> <span class="nav-text">@RequestMapping注解方式作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controller返回类型"><span class="nav-number">2.3.</span> <span class="nav-text">controller返回类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controller参数绑定"><span class="nav-number">2.4.</span> <span class="nav-text">controller参数绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controller参数绑定默认支持的类型"><span class="nav-number">2.5.</span> <span class="nav-text">controller参数绑定默认支持的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定pojo（简单java对象）"><span class="nav-number">2.6.</span> <span class="nav-text">绑定pojo（简单java对象）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义参数绑定"><span class="nav-number">2.7.</span> <span class="nav-text">自定义参数绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ssm时所遇到的一些问题"><span class="nav-number">3.</span> <span class="nav-text">使用ssm时所遇到的一些问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#post乱码问题"><span class="nav-number">3.1.</span> <span class="nav-text">post乱码问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出现400请求错误的原因"><span class="nav-number">3.2.</span> <span class="nav-text">出现400请求错误的原因</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ssm知识点"><span class="nav-number">2.</span> <span class="nav-text">ssm知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ssm框架对应的Java开发三层架构"><span class="nav-number">2.1.</span> <span class="nav-text">ssm框架对应的Java开发三层架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RequestMapping注解方式作用"><span class="nav-number">2.2.</span> <span class="nav-text">@RequestMapping注解方式作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controller返回类型"><span class="nav-number">2.3.</span> <span class="nav-text">controller返回类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controller参数绑定"><span class="nav-number">2.4.</span> <span class="nav-text">controller参数绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controller参数绑定默认支持的类型"><span class="nav-number">2.5.</span> <span class="nav-text">controller参数绑定默认支持的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定pojo（简单java对象）"><span class="nav-number">2.6.</span> <span class="nav-text">绑定pojo（简单java对象）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义参数绑定"><span class="nav-number">2.7.</span> <span class="nav-text">自定义参数绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#springmvc和status2的区别"><span class="nav-number">2.8.</span> <span class="nav-text">springmvc和status2的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ssm时所遇到的一些问题"><span class="nav-number">3.</span> <span class="nav-text">使用ssm时所遇到的一些问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#post乱码问题"><span class="nav-number">3.1.</span> <span class="nav-text">post乱码问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出现400请求错误的原因"><span class="nav-number">3.2.</span> <span class="nav-text">出现400请求错误的原因</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -586,7 +606,7 @@ defaultValue设置参数默认值
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
 <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
