@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="前言在学习了Spring4+SpringMVC+mybatis整合以及ssm简单使用后，我们已经基本掌握ssm开发的基础知识，下面将进行ssm高级注解开发，包括的知识有：pojo参数绑定，list参数绑定，validation检验，数据回显，上传图片，json交互，拦截器等 此次开发是基于上面两篇文章中的项目实现的，上面两篇文章的项目源码请到我的github项目下载 添加查询功能">
+<meta name="description" content="前言在学习了Spring4+SpringMVC+mybatis整合以及ssm简单使用后，我们已经基本掌握ssm开发的基础知识，下面将进行ssm高级注解开发，包括的知识有：包装类型pojo参数绑定（即类中不是简单类型的属性，而是另外的pojo），list参数绑定，validation检验，数据回显，上传图片，json交互，拦截器等 此次开发是基于上面两篇文章中的项目实现的，上面两篇文章的项目源码请到">
 <meta name="keywords" content="ssm,JavaWeb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssm高级注解开发">
 <meta property="og:url" content="http://yoursite.com/2018/04/10/ssm高级注解开发/index.html">
 <meta property="og:site_name" content="光玉">
-<meta property="og:description" content="前言在学习了Spring4+SpringMVC+mybatis整合以及ssm简单使用后，我们已经基本掌握ssm开发的基础知识，下面将进行ssm高级注解开发，包括的知识有：pojo参数绑定，list参数绑定，validation检验，数据回显，上传图片，json交互，拦截器等 此次开发是基于上面两篇文章中的项目实现的，上面两篇文章的项目源码请到我的github项目下载 添加查询功能">
+<meta property="og:description" content="前言在学习了Spring4+SpringMVC+mybatis整合以及ssm简单使用后，我们已经基本掌握ssm开发的基础知识，下面将进行ssm高级注解开发，包括的知识有：包装类型pojo参数绑定（即类中不是简单类型的属性，而是另外的pojo），list参数绑定，validation检验，数据回显，上传图片，json交互，拦截器等 此次开发是基于上面两篇文章中的项目实现的，上面两篇文章的项目源码请到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T07:23:45.222Z">
+<meta property="og:updated_time" content="2018-04-10T08:10:33.877Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssm高级注解开发">
-<meta name="twitter:description" content="前言在学习了Spring4+SpringMVC+mybatis整合以及ssm简单使用后，我们已经基本掌握ssm开发的基础知识，下面将进行ssm高级注解开发，包括的知识有：pojo参数绑定，list参数绑定，validation检验，数据回显，上传图片，json交互，拦截器等 此次开发是基于上面两篇文章中的项目实现的，上面两篇文章的项目源码请到我的github项目下载 添加查询功能">
+<meta name="twitter:description" content="前言在学习了Spring4+SpringMVC+mybatis整合以及ssm简单使用后，我们已经基本掌握ssm开发的基础知识，下面将进行ssm高级注解开发，包括的知识有：包装类型pojo参数绑定（即类中不是简单类型的属性，而是另外的pojo），list参数绑定，validation检验，数据回显，上传图片，json交互，拦截器等 此次开发是基于上面两篇文章中的项目实现的，上面两篇文章的项目源码请到">
 
 
 
@@ -312,9 +312,13 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在学习了<a href="https://2427595858.github.io/2018/04/03/Spring4-SpringMVC-mybatis%E6%95%B4%E5%90%88/" target="_blank" rel="noopener">Spring4+SpringMVC+mybatis整合</a>以及<a href="https://2427595858.github.io/2018/04/07/ssm%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">ssm简单使用</a>后，我们已经基本掌握ssm开发的基础知识，下面将进行ssm高级注解开发，包括的知识有：pojo参数绑定，list参数绑定，validation检验，数据回显，上传图片，json交互，拦截器等</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在学习了<a href="https://2427595858.github.io/2018/04/03/Spring4-SpringMVC-mybatis%E6%95%B4%E5%90%88/" target="_blank" rel="noopener">Spring4+SpringMVC+mybatis整合</a>以及<a href="https://2427595858.github.io/2018/04/07/ssm%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">ssm简单使用</a>后，我们已经基本掌握ssm开发的基础知识，下面将进行ssm高级注解开发，包括的知识有：包装类型pojo参数绑定（即类中不是简单类型的属性，而是另外的pojo），list参数绑定，validation检验，数据回显，上传图片，json交互，拦截器等</p>
 <p>此次开发是基于上面两篇文章中的项目实现的，上面两篇文章的项目源码请到<a href="https://github.com/2427595858/ssm-getting-started" target="_blank" rel="noopener">我的github项目</a>下载</p>
-<h2 id="添加查询功能"><a href="#添加查询功能" class="headerlink" title="添加查询功能"></a>添加查询功能</h2>
+<h2 id="添加查询功能"><a href="#添加查询功能" class="headerlink" title="添加查询功能"></a>添加查询功能</h2><p>我们已经在mapper包下的ItemsCustomMapper中定义了<strong>根据名称来查询</strong>的sql片段，<br><br>接下来，我们需要在controller类中的queryItems方法绑定ItemsQueryVo对象（即包装类型pojo对象）<br><br>原来的queryItems方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/queryItems&quot;)</span><br><span class="line">public ModelAndView queryItems() throws Exception&#123;</span><br><span class="line">    List&lt;ItemCustom&gt; itemsList=itemsService.findItemsList(null);</span><br></pre></td></tr></table></figure></p>
+<p>改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/queryItems&quot;)</span><br><span class="line">public ModelAndView queryItems(ItemsQueryVo itemsQueryVo) throws Exception&#123;</span><br><span class="line">    //形参上传入了ItemsQueryVo对象，并将形参传入service的findItemsList方法中</span><br><span class="line">    List&lt;ItemCustom&gt; itemsList=itemsService.findItemsList(itemsQueryVo);</span><br></pre></td></tr></table></figure></p>
+<p>在itemsList.jsp页面中对应添加商品名称的查询条件（input输入框）<br>将body中form表单部分改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;form class=&quot;layui-form&quot; action=&quot;$&#123;pageContext.request.contextPath&#125;/items/queryItems.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;label class=&quot;layui-form-label&quot;&gt;查询条件&lt;/label&gt;</span><br><span class="line">    &lt;div class=&quot;layui-input-block&quot;&gt;</span><br><span class="line">        &lt;label class=&quot;layui-form-label&quot;&gt;商品名称&lt;/label&gt;</span><br><span class="line">        &lt;div class=&quot;layui-input-inline&quot;&gt;</span><br><span class="line">&lt;%-- 注意：这里传入的是ItemsQueryVo类下的pojo类ItemCustom下的name属性 --%&gt;</span><br><span class="line">            &lt;input class=&quot;layui-input&quot; type=&quot;text&quot; name=&quot;itemCustom.name&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;layui-input-inline&quot;&gt;</span><br><span class="line">            &lt;button class=&quot;layui-btn&quot; type=&quot;submit&quot; value=&quot;查询&quot;&gt;查询&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这里只是取ItemsQueryVo类下的ItemCustom的name属性，若有多层包装类，则按照<br><br><code>类名.类名.(...).属性</code>来命名form表单所要传入参数</p>
+
       
     </div>
     
