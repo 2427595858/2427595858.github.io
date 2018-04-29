@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="设计模式分为三种类型，共23种：  创建型模式：单例模式、抽象工厂模式、建造者模式、工厂模式、原型模式。 结构型模式：适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式。 行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、职责链模式(责任链模式)、访问者模式。  实际上能够掌握其中几种常用的设计模式就很不错了。">
+<meta name="description" content="设计模式分为三种类型，共23种：  创建型模式：单例模式、抽象工厂模式、建造者模式、工厂模式、原型模式。 结构型模式：适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式。 行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、职责链模式(责任链模式)、访问者模式。">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java设计模式">
 <meta property="og:url" content="http://yoursite.com/2018/04/21/Java设计模式/index.html">
 <meta property="og:site_name" content="光玉">
-<meta property="og:description" content="设计模式分为三种类型，共23种：  创建型模式：单例模式、抽象工厂模式、建造者模式、工厂模式、原型模式。 结构型模式：适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式。 行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、职责链模式(责任链模式)、访问者模式。  实际上能够掌握其中几种常用的设计模式就很不错了。">
+<meta property="og:description" content="设计模式分为三种类型，共23种：  创建型模式：单例模式、抽象工厂模式、建造者模式、工厂模式、原型模式。 结构型模式：适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式。 行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、职责链模式(责任链模式)、访问者模式。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-21T13:27:00.538Z">
+<meta property="og:updated_time" content="2018-04-29T09:06:47.766Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java设计模式">
-<meta name="twitter:description" content="设计模式分为三种类型，共23种：  创建型模式：单例模式、抽象工厂模式、建造者模式、工厂模式、原型模式。 结构型模式：适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式。 行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、职责链模式(责任链模式)、访问者模式。  实际上能够掌握其中几种常用的设计模式就很不错了。">
+<meta name="twitter:description" content="设计模式分为三种类型，共23种：  创建型模式：单例模式、抽象工厂模式、建造者模式、工厂模式、原型模式。 结构型模式：适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式。 行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、职责链模式(责任链模式)、访问者模式。">
 
 
 
@@ -316,10 +316,26 @@
 <ul>
 <li>创建型模式：单例模式、抽象工厂模式、建造者模式、工厂模式、原型模式。</li>
 <li>结构型模式：适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式。</li>
-<li>行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、职责链模式(责任链模式)、访问者模式。</li>
+<li>行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、职责链模式(责任链模式)、访问者模式。<a id="more"></a>
+实际上能够掌握其中几种常用的设计模式就很不错了。</li>
 </ul>
-<p>实际上能够掌握其中几种常用的设计模式就很不错了。</p>
-<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>参考<a href="https://blog.csdn.net/dmk877/article/details/50311791" target="_blank" rel="noopener">单例设计模式完全解析</a></p>
+<h2 id="代码风格良好的标准"><a href="#代码风格良好的标准" class="headerlink" title="代码风格良好的标准"></a>代码风格良好的标准</h2><p>如果想要确认代码编写风格是否良好，可以遵从以下两个标准：</p>
+<ul>
+<li>客户端（主方法）调用简单，不需要关注具体细节。</li>
+<li>程序代码的修改，不会影响到客户端的调用，即使用者可以不去关心代码是否变更。<br>以后编写代码要遵循这两个标准。</li>
+</ul>
+<h2 id="工厂设计模式（Factory）"><a href="#工厂设计模式（Factory）" class="headerlink" title="工厂设计模式（Factory）"></a>工厂设计模式（Factory）</h2><p>我们通过一个例子来了解工厂设计模式。</p>
+<p>首先，定义一个Fruit接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">package Factory.design;</span><br><span class="line"></span><br><span class="line">public interface Fruit &#123;</span><br><span class="line">    public void eat();  // 定义抽象方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编写Apple类和Orange类实现Fruit接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package Factory.design;</span><br><span class="line"></span><br><span class="line">public class Apple implements Fruit &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void eat()&#123;</span><br><span class="line">        System.out.println(&quot;吃苹果&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package Factory.design;</span><br><span class="line"></span><br><span class="line">public class Orange implements Fruit &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void eat()&#123;</span><br><span class="line">        System.out.println(&quot;吃橙子&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编写测试程序TestDemo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package Factory.design;</span><br><span class="line"></span><br><span class="line">public class TestDemo &#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        Fruit f=new Apple();</span><br><span class="line">        f.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以发现，上面的代码不是良好的代码编写风格。因为每次我们想实例化Fruit接口对象时，都需要通过子类来进行上转型操作。假设有另一个子类Orange也实现Fruit接口，当我们想得到Orange对象时，就需要修改客户端代码，也就是将Apple子类替换为Orange子类。那么，假设有很多子类实现了Fruit接口呢？</p>
+<p>其实，在整个过程中，客户端只关心一件事：如何取得Fruit接口对象。至于这个接口是由那个子类对象实例化的客户端根本不需要知道，所以最大问题就在关键字new的使用上。</p>
+<p>那么，如何解决关键字new带来的耦合度问题呢？解决办法是让客户端只看见接口而不让其看见子类，但是需要一个中间工具类（也就是Factory工厂类）来取得接口对象。这样客户端就不需要关心接口子类，只要通过Factory工厂类就可以获取接口对象。</p>
+<p><strong>增加一个工厂类</strong>进行过渡<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package Factory.design;</span><br><span class="line"></span><br><span class="line">public class Factory &#123;  // 定义工厂类，此类不提供属性</span><br><span class="line">    /**</span><br><span class="line">     * 取得指定类型的接口对象</span><br><span class="line">     * @param className 要取得的类实例化对象标记</span><br><span class="line">     * @return 如果指定标记存在，则Fruit接口实例化相应对象，否则返回null</span><br><span class="line">     */</span><br><span class="line">    public static Fruit getInstance(String className)&#123;</span><br><span class="line">        if(&quot;apple&quot;.equals(className))&#123;      // 是否是苹果类</span><br><span class="line">            return new Apple();</span><br><span class="line">        &#125;else if(&quot;orange&quot;.equals(className))&#123;// 是否是橙子类</span><br><span class="line">            return new Orange();</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return null;	// 没有实例化对象会造成NullPointerException，这里再编写一个Other类实现Fruit接口，然后在这里实例化Other子类对象，就不会出现NullPointerException</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>相应的客户端代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package Factory.design;</span><br><span class="line"></span><br><span class="line">public class TestDemo &#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        Fruit f=Factory.getInstance(&quot;orange&quot;);  // 通过工厂类取得指定接口对象</span><br><span class="line">        f.eat();                                            // 调用接口方法</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过使用Factory.getInstance()方法根据指定子类的标记取得接口实例化对象，使得客户端不需要再关注具体子类，也不需要关注Factory类是怎么处理的，只需要关注如何取得接口对象，如何进行操作。这样的设计模式就是工厂设计模式。</p>
+<h2 id="代理设计模式"><a href="#代理设计模式" class="headerlink" title="代理设计模式"></a>代理设计模式</h2><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>参考<a href="https://blog.csdn.net/dmk877/article/details/50311791" target="_blank" rel="noopener">单例设计模式完全解析</a></p>
 <p>参考<a href="https://www.jianshu.com/p/61b67ca754a3" target="_blank" rel="noopener">简书-java常用十种设计模式</a></p>
 
       
@@ -500,7 +516,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码风格良好的标准"><span class="nav-number">1.</span> <span class="nav-text">代码风格良好的标准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂设计模式（Factory）"><span class="nav-number">2.</span> <span class="nav-text">工厂设计模式（Factory）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理设计模式"><span class="nav-number">3.</span> <span class="nav-text">代理设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">4.</span> <span class="nav-text">单例模式</span></a></li></ol></div>
             
 
           </div>
